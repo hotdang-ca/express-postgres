@@ -6,6 +6,7 @@
   "scripts": {
     "start-dev": "nodemon index.js",
     "test": "npm run test:setup && cross-env NODE_ENV=test jest --testTimeout=10000",
+    "test:coverage": "npm run test:setup && cross-env NODE_ENV=test jest --coverage",
     "db:init": "sequelize init",
 
     "db:migrate": "sequelize db:migrate",

@@ -7,7 +7,6 @@ const createPost = async (req, res) => {
             post,
         });
     } catch (err) {
-        console.error(err);
         return res.status(500).json({ error: err.message });
     }
 };
@@ -29,6 +28,7 @@ const getAllPosts = async (req, res) => {
 
         return res.status(200).json({ posts });
     } catch (err) {
+        // TODO: need some way to test failure.
         return res.status(500).json({ error: err.message });
     }
 }
@@ -62,6 +62,7 @@ const getPostById = async (req, res) => {
 
         return res.status(200).json({ post });
     } catch (err) {
+        // TODO: need some way to test this
         return res.status(500).json({ error: err.message });
     }
 }
@@ -73,17 +74,14 @@ const updatePost = async (req, res) => {
             where: { id: postId },
         });
 
-
         if (!updated) {
-            throw new Error('Post not found');
+            throw new Error('Error updating post');
         }
 
         const updatedPost = await models.Post.findOne({ where: { id: postId }});
         return res.status(200).json({ post: updatedPost });
     } catch (err) {
-        const code = err.message === 'Post not found' ? 404 : 500;
-
-        return res.status(code).json({ error: err.message });
+        return res.status(500).json({ error: err.message });
     }
 }
 
