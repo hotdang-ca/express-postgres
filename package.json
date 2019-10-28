@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "nodemon index.js",
-    "sequelize:init": "sequelize init",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:setup && cross-env NODE_ENV=test jest --testTimeout=10000",
+    "db:init": "sequelize init",
+
+    "db:migrate": "sequelize db:migrate",
+    "db:reset": "sequelize db:migrate:undo:all && npm run db:migrate",
+    "test:setup": "cross-env NODE_ENV=test npm run db:reset"
   },
   "author": "James Perih <james@fourandahalfgiraffes.ca>",
   "license": "UNLICENSED",
@@ -19,7 +23,16 @@
     "sequelize": "^5.21.1"
   },
   "devDependencies": {
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.4",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
