@@ -1,12 +1,13 @@
-# Express + PostGRES
+# Express + Postgres
 
 ## What Is This?
-Nice little MVP to use as a template for Express + PostGRES stack
+Nice little MVP to use as a template for Express + Postgres stack
 
 ## Getting Started
 The usual NodeJS process:
  - `npm install`
- - rename `.env.example` to `.env` and plug in your server strings (alternatively, it also takes server name, port, etc. Yet to be setup, requires modifying `database/config/config.js`).
+ - Setup a Postgres server; add a test and development database; bonus points to also set up a production database as well.
+ - rename `.env.example` to `.env` and plug in your server strings (authentication, etc; alternatively, it also takes server name, port, etc. Yet to be setup, requires modifying `database/config/config.js`).
  - `npm run start-dev` to start developing.
  - `npm run test` (or `npm run test:coverage`) to test (requres test db setup)
 
